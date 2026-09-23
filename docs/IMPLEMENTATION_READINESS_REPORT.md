@@ -1,8 +1,8 @@
-# NYAYA-NS: Implementation Readiness & Technical Audit Report (Version 2.1)
+# NYAYPRAMANA: Implementation Readiness & Technical Audit Report (Version 2.1)
 
 **Document Version:** 2.1.0-AUDIT-FINAL  
 **Date:** September 23, 2026  
-**Project Name:** NYAYA-NS (A Verification-First Neuro-Symbolic Framework for Indian Bail Decision Analysis)  
+**Project Name:** NYAYPRAMANA (A Verification-First Neuro-Symbolic Framework for Indian Bail Decision Analysis)  
 **Authoritative Specification:** `docs/FINAL_LOCKED_SPECIFICATION.md`  
 **Current Gate Status:** **STEP 1 — ANALYSIS & SPECIFICATION ONLY (IMPLEMENTATION PERMISSION: NOT GRANTED)**
 
@@ -10,10 +10,10 @@
 
 ## 1. Executive Summary
 
-This report delivers an exhaustive, evidence-grounded pre-implementation research and technical audit for **NYAYA-NS**, fully updated with all methodological, architectural, and experimental corrections. The audit was conducted strictly in accordance with user instructions. No implementation code, environment mutation, package installation, model acquisition, synthetic training data generation, or dataset downloading was performed.
+This report delivers an exhaustive, evidence-grounded pre-implementation research and technical audit for **NYAYPRAMANA**, fully updated with all methodological, architectural, and experimental corrections. The audit was conducted strictly in accordance with user instructions. No implementation code, environment mutation, package installation, model acquisition, synthetic training data generation, or dataset downloading was performed.
 
 ### Key Audit Findings at a Glance:
-1. **Scope & Research Grounding:** NYAYA-NS is an academic research prototype focused strictly on **Indian bail decision analysis**. It investigates whether neuro-symbolic verification (multi-signal authority applicability, dual-level temporal reasoning, layered citation/passage verification, proof graphs, and calibrated abstention) provides measurable reliability improvements over progressively stronger RAG baselines.
+1. **Scope & Research Grounding:** NYAYPRAMANA is an academic research prototype focused strictly on **Indian bail decision analysis**. It investigates whether neuro-symbolic verification (multi-signal authority applicability, dual-level temporal reasoning, layered citation/passage verification, proof graphs, and calibrated abstention) provides measurable reliability improvements over progressively stronger RAG baselines.
 2. **Three Explicit Operating Modes:**
    - **Mode 1 (Historical Outcome Prediction):** Evaluates historical predictive performance under strict temporal information cutoffs using only verified pre-decision information.
    - **Mode 2 (Decision Analysis):** Analyzes existing judgments to evaluate legal issue extraction, argument mapping, temporal validity, and proof-graph construction (not an outcome prediction benchmark).
@@ -51,7 +51,7 @@ This report delivers an exhaustive, evidence-grounded pre-implementation researc
 10. **Layered Citation Verification Pipeline:**
     - 7-level pipeline: Source Existence $\rightarrow$ Citation Resolution $\rightarrow$ Passage Attribution $\rightarrow$ Claim-Support Verification $\rightarrow$ Temporal Verification $\rightarrow$ Jurisdiction/Hierarchy Verification $\rightarrow$ Proof-Path Verification. Hash/string matching confirms existence/provenance; semantic/symbolic checks evaluate legal support.
 11. **Knowledge Graph vs Proof Graph Distinction:**
-    - **Legal Knowledge Graph (MUST HAVE Capability):** Relational property graph, may contain cycles, represents domain entities and relationships. Classified as **MUST HAVE** (supports EXP-006, full NYAYA-NS, and multi-hop applicability). Backend technology is decoupled: default lightweight implementation is NetworkX + SQLite; Neo4j remains an optional backend; distributed graph is future scale option.
+    - **Legal Knowledge Graph (MUST HAVE Capability):** Relational property graph, may contain cycles, represents domain entities and relationships. Classified as **MUST HAVE** (supports EXP-006, full NYAYPRAMANA, and multi-hop applicability). Backend technology is decoupled: default lightweight implementation is NetworkX + SQLite; Neo4j remains an optional backend; distributed graph is future scale option.
     - **Proof Graph:** Derived evidence DAG, strictly acyclic, represents support paths for conclusions. Pydantic validates structural schema constraints; the verification engine evaluates evidentiary/legal validity.
 12. **Hardware & Execution Strategy:**
     - Host GPU: NVIDIA GeForce RTX 3050 Laptop GPU (6,144 MiB VRAM).
@@ -72,7 +72,7 @@ This report delivers an exhaustive, evidence-grounded pre-implementation researc
 > *How can neural legal language models be constrained by structured legal knowledge and symbolic verification so that their Indian bail analyses are more grounded, temporally valid, traceable, and resistant to hallucinated authority?*
 
 ### 2.2 Core Hypotheses
-- **H1 (Grounding):** NYAYA-NS significantly reduces unsupported legal claims and citations compared to LLM-only and standard semantic RAG baselines.
+- **H1 (Grounding):** NYAYPRAMANA significantly reduces unsupported legal claims and citations compared to LLM-only and standard semantic RAG baselines.
 - **H2 (Layered Citation Verification):** Layered passage-level verification (existence $\rightarrow$ resolution $\rightarrow$ attribution $\rightarrow$ semantic claim support) significantly reduces fabricated, misattributed, or misquoted citations.
 - **H3 (Applicability):** Multi-signal legal ranking (statutory provision, legal issue match, court hierarchy, procedural posture) outperforms purely dense semantic similarity in ranking governing authorities.
 - **H4 (Temporal Reasoning):** Symbolic temporal information cutoffs eliminate future-precedent and anachronistic statutory leakage in historical prediction, while temporal legal-effect analysis correctly contextualizes precedent evolution.
@@ -210,12 +210,12 @@ Every candidate field is audited and classified for temporal availability:
 
 ### 7.1 Primary Source Literature Verification Table
 
-| System / Work | Primary Source Citation & DOI/arXiv | Publication / Date | Verification Status | Verified Findings (Reported by Source) | NYAYA-NS Analysis (Literature-Scope Statement / Addressed Gap) | Access Date |
+| System / Work | Primary Source Citation & DOI/arXiv | Publication / Date | Verification Status | Verified Findings (Reported by Source) | NYAYPRAMANA Analysis (Literature-Scope Statement / Addressed Gap) | Access Date |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **NyayaRAG** | Shubham Kumar Nigam et al., *arXiv:2508.00709* | Accepted at AACL-IJCNLP 2025; submission Aug 2025 | **PRIMARY SOURCE VERIFIED** | **REPORTED BY SOURCE:** Evaluated LLaMA-3-8B with dense RAG over Supreme Court judgments (ILDC corpus). Reported that factual case text achieved 62.27% accuracy, adding statutes improved accuracy to 67.07%, but **adding semantically retrieved precedents degraded accuracy to 64.71%**. | **LITERATURE-SCOPE STATEMENT:** The cited work investigates dense semantic retrieval but does not describe or evaluate explicit verification-first mechanisms such as passage-level citation verification, symbolic temporal gating, provenance-aware proof graphs, or calibrated abstention. | 2026-09-23 |
-| **NyayaAnumana & INLegalLlama** | Shubham Kumar Nigam et al., *"The Largest Indian Legal Judgment Prediction Dataset and Specialized Language Model for Enhanced Decision Analysis"*, Proceedings of the 31st International Conference on Computational Linguistics (COLING 2025), pp. 11094–11109 (*arXiv:2412.08385*; ACL: `2025.coling-main.738`) | Initial submission Dec 11, 2024; published COLING 2025 | **PRIMARY SOURCE VERIFIED** | **REPORTED BY SOURCE:** Introduced NyayaAnumana (largest Indian LJP dataset comprising 29,380 cases across Supreme Court, High Courts, and District Courts) and INLegalLlama (domain-adapted LLaMA model), reporting strong benchmark improvements on multi-jurisdictional judgment outcome forecasting. | **LITERATURE-SCOPE STATEMENT:** The cited paper does not describe or evaluate the explicit verification-first mechanisms targeted by NYAYA-NS, including passage-level citation verification, symbolic temporal gating, provenance-aware proof graphs, or calibrated verification-aware abstention. | 2026-09-23 |
+| **NyayaAnumana & INLegalLlama** | Shubham Kumar Nigam et al., *"The Largest Indian Legal Judgment Prediction Dataset and Specialized Language Model for Enhanced Decision Analysis"*, Proceedings of the 31st International Conference on Computational Linguistics (COLING 2025), pp. 11094–11109 (*arXiv:2412.08385*; ACL: `2025.coling-main.738`) | Initial submission Dec 11, 2024; published COLING 2025 | **PRIMARY SOURCE VERIFIED** | **REPORTED BY SOURCE:** Introduced NyayaAnumana (largest Indian LJP dataset comprising 29,380 cases across Supreme Court, High Courts, and District Courts) and INLegalLlama (domain-adapted LLaMA model), reporting strong benchmark improvements on multi-jurisdictional judgment outcome forecasting. | **LITERATURE-SCOPE STATEMENT:** The cited paper does not describe or evaluate the explicit verification-first mechanisms targeted by NYAYPRAMANA, including passage-level citation verification, symbolic temporal gating, provenance-aware proof graphs, or calibrated verification-aware abstention. | 2026-09-23 |
 | **LeCNet** | Vijit Malik et al., *"ILDC for CJPE: Indian Legal Documents Corpus for Court Judgment Prediction and Explanation"*, ACM / GitHub (`Law-AI/LeCNet`) | 2022/2023 | **PRIMARY SOURCE VERIFIED** | **REPORTED BY SOURCE:** Created citation network dataset for Supreme Court of India judgments to explore topological citation patterns and link prediction. | **LITERATURE-SCOPE STATEMENT:** The cited work focuses on citation network analysis and topological link prediction; it is not reported as evaluating neuro-symbolic verification, passage-level citation verification, or bail decision workflows. | 2026-09-23 |
-| **Pooja Ramesh Singh Case** | *Pooja Ramesh Singh v. Jammu and Kashmir Bank Ltd. & Anr.*, Supreme Court of India, Civil Appeal No. 11950 of 2025; **2026 INSC 668**; Bench: Justice Pamidighantam Sri Narasimha, Justice Alok Aradhe | Decided July 2, 2026 | **PRIMARY SOURCE VERIFIED** | **REPORTED BY SOURCE:** Supreme Court set aside appellate orders that relied on six AI-hallucinated judicial precedents, ruling that judicial decisions based on fake citations are "no decision in the eyes of law". Court directed the Bar Council of India to frame AI conduct rules and clarified citing fake precedents constitutes advocate misconduct. | **LEGAL MOTIVATION / SCOPE NOTE:** Arises under Section 7 IBC (not a bail authority); motivates NYAYA-NS Level 1–4 citation verification pipeline to detect and block fictitious AI precedents. | 2026-09-23 |
+| **Pooja Ramesh Singh Case** | *Pooja Ramesh Singh v. Jammu and Kashmir Bank Ltd. & Anr.*, Supreme Court of India, Civil Appeal No. 11950 of 2025; **2026 INSC 668**; Bench: Justice Pamidighantam Sri Narasimha, Justice Alok Aradhe | Decided July 2, 2026 | **PRIMARY SOURCE VERIFIED** | **REPORTED BY SOURCE:** Supreme Court set aside appellate orders that relied on six AI-hallucinated judicial precedents, ruling that judicial decisions based on fake citations are "no decision in the eyes of law". Court directed the Bar Council of India to frame AI conduct rules and clarified citing fake precedents constitutes advocate misconduct. | **LEGAL MOTIVATION / SCOPE NOTE:** Arises under Section 7 IBC (not a bail authority); motivates NYAYPRAMANA Level 1–4 citation verification pipeline to detect and block fictitious AI precedents. | 2026-09-23 |
 
 #### 7.1.1 Primary Source Metadata Audit: *Pooja Ramesh Singh v. J&K Bank*
 - **Source verification:** The case metadata is verified against a Supreme Court of India source (`2026 INSC 668` / `Civil Appeal No. 11950 of 2025`). The judgment text is cross-checked against an independent legal database. Indian Kanoon must not be described as an official Supreme Court portal.
@@ -231,19 +231,19 @@ Every candidate field is audited and classified for temporal availability:
 - **Three-Part Analytical Distinction:**
   1. **What the Supreme Court source establishes:** The Supreme Court set aside appellate orders (NCLAT/NCLT) that had relied on six AI-hallucinated judicial precedents, ruling that judicial decisions based even partially on fake citations are "no decision in the eyes of law" and amount to a subversion of the rule of law. The Court directed the Bar Council of India to frame AI conduct rules and clarified that citing fake precedents constitutes advocate misconduct.
   2. **What the independent database cross-check establishes:** Cross-checking confirms the full judgment text, the bench composition, and the procedural origin arising under Section 7 of the Insolvency and Bankruptcy Code (IBC) rather than criminal bail proceedings.
-  3. **What NYAYA-NS uses the case to motivate:** This case is not a bail authority; NYAYA-NS cites it strictly as judicial authority motivating the critical imperative for Level 1–4 citation verification to detect and block fictitious AI precedents before they can enter legal reasoning.
+  3. **What NYAYPRAMANA uses the case to motivate:** This case is not a bail authority; NYAYPRAMANA cites it strictly as judicial authority motivating the critical imperative for Level 1–4 citation verification to detect and block fictitious AI precedents before they can enter legal reasoning.
 
 ### 7.2 Defensible Novelty Statement & Research Gap
 Existing work demonstrates components such as legal judgment prediction, RAG, legal knowledge graphs, structured reasoning, and legal citation handling. The surveyed literature does not establish whether a domain-bounded, verification-first neuro-symbolic pipeline for Indian bail analysis combining authority applicability, temporal validity, source/passage verification, proof graphs, and calibrated abstention produces measurable reliability gains over progressively stronger RAG baselines.
 
-NYAYA-NS does **NOT** claim to be the first legal AI, first Indian legal RAG, or first legal knowledge graph. Its defensible contribution is:
+NYAYPRAMANA does **NOT** claim to be the first legal AI, first Indian legal RAG, or first legal knowledge graph. Its defensible contribution is:
 > *A domain-bounded, verification-first neuro-symbolic framework for Indian bail decision analysis that integrates multi-signal authority applicability, dual-level temporal reasoning, a structured authority-force model, layered citation verification, provenance-aware proof graphs, and calibrated abstention, evaluated against progressively stronger RAG baselines and controlled adversarial evaluation fixtures.*
 
 ---
 
 ## 8. Research-Gap Assessment
 
-| Research Dimension | Existing State of the Art (NyayaRAG, NyayaAnumana, INLegalLlama) | NYAYA-NS Contribution |
+| Research Dimension | Existing State of the Art (NyayaRAG, NyayaAnumana, INLegalLlama) | NYAYPRAMANA Contribution |
 | :--- | :--- | :--- |
 | **Precedent Retrieval** | Pure dense semantic similarity. Retrieves topically close but legally inapplicable precedents. | **Multi-Signal Applicability:** Joint scoring across issue match, statutory provision, court hierarchy, procedural posture, and semantic similarity. |
 | **Temporal Integrity** | Overlooked. Later precedents leak into earlier cases, causing anachronistic evaluation. | **Dual-Level Temporal Model:** Strict information cutoff for prediction ($t_{\text{auth}} \le t_{\text{case}}$); nuanced legal-effect analysis for decision analysis. |
@@ -326,7 +326,7 @@ A critical architectural distinction is maintained between the knowledge graph a
 - **FUTURE SCALE OPTION:** Distributed graph infrastructure.
 - **Rationale for Mandatory Classification:**
   1. EXP-006 evaluates graph-augmented retrieval against dense and hybrid baselines.
-  2. The full NYAYA-NS architecture (EXP-007) requires structured legal knowledge representation.
+  2. The full NYAYPRAMANA architecture (EXP-007) requires structured legal knowledge representation.
   3. Applicability and provenance reasoning depend on structured relationships.
 While the specific technology NetworkX is replaceable, the capability itself is strictly locked as a MUST HAVE.
 
@@ -497,7 +497,7 @@ EXP-011 and EXP-014 are kept strictly separate: EXP-011 is an independent compon
 
 ## 16. Comprehensive Leakage Audit
 
-| Leakage Pathway | Risk Description | Prevention Protocol Enforced in NYAYA-NS |
+| Leakage Pathway | Risk Description | Prevention Protocol Enforced in NYAYPRAMANA |
 | :--- | :--- | :--- |
 | **1. Label Leakage** | `judgment_reason` and `summary` disclose outcome. | Strictly quarantined to Mode 2 / gold reference; excluded from Mode 1 inputs. |
 | **2. Chronological Leakage** | Random splitting allows future cases into train set. | **Dataset Split Policy:** Chronological train/dev/test split targeting approximately 70% / 15% / 15% by count with group-aware atomic assignment of duplicate/near-duplicate clusters; actual split statistics recorded in `split_manifest.json`. |
@@ -527,7 +527,7 @@ EXP-005: Hybrid RAG (Dense BGE-M3 + Lexical BM25 reciprocal rank fusion)
    ↓
 EXP-006: Graph-Augmented RAG (Knowledge graph augmented retrieval)
    ↓
-EXP-007: Full NYAYA-NS Framework (Integrated system benchmark)
+EXP-007: Full NYAYPRAMANA Framework (Integrated system benchmark)
    ↓
 EXP-008: Layered Citation Verification Diagnostic (Precision/Recall across 7 verification levels)
    ↓
@@ -603,7 +603,7 @@ Metrics must never be collapsed into a single composite score:
 
 1. **Python 3.11 Environment Setup:** User confirmation required on whether to establish Python 3.11 in WSL2 Ubuntu (preferred) or native Windows PowerShell on Drive D:.
 2. **Model Serving Option Selection:** User confirmation of the 3B development default + 8B candidate smoke test strategy.
-3. **Dataset Acquisition Confirmation:** Confirmation to download the 298 MB PDF archive to `D:\nyaya_ns_data\raw\` once Phase 2 begins.
+3. **Dataset Acquisition Confirmation:** Confirmation to download the 298 MB PDF archive to `D:\nyaypramana_data\raw\` once Phase 2 begins.
 
 ---
 
@@ -611,7 +611,7 @@ Metrics must never be collapsed into a single composite score:
 
 1. **Runtime Platform:** (A) WSL2 Ubuntu 2 (Recommended for ML reproducibility), or (B) Native Windows PowerShell with Python 3.11 on Drive D:.
 2. **Model Serving Selection:** Confirm (A) Local 3B development model with 8B candidate benchmark, or (B) Hybrid external API generation with local symbolic verification.
-3. **Storage Confirmation:** Confirm `D:\nyaya_ns_data\` and `D:\hf_cache\` as primary data and model locations.
+3. **Storage Confirmation:** Confirm `D:\nyaypramana_data\` and `D:\hf_cache\` as primary data and model locations.
 
 ---
 
@@ -636,7 +636,7 @@ Phase 8: EXP-005 (Hybrid Dense + Lexical Retrieval)
    ↓
 Phase 9: EXP-006 (Knowledge Graph Augmented Retrieval)
    ↓
-Phase 10: EXP-007 (Full NYAYA-NS Integrated Benchmark)
+Phase 10: EXP-007 (Full NYAYPRAMANA Integrated Benchmark)
    ↓
 Phase 11: EXP-008 / EXP-009 / EXP-010 (Citation, Temporal, and Applicability Diagnostics)
    ↓
@@ -655,7 +655,7 @@ Phase 16: Research Artifacts, Manifests & Documentation
 
 ## 24. Definition of Implementation-Ready
 
-The NYAYA-NS project will be deemed **Implementation-Ready** when:
+The NYAYPRAMANA project will be deemed **Implementation-Ready** when:
 1. The user selects the preferred runtime environment and model strategy options.
 2. The user explicitly issues the verbatim authorization: `APPROVED — BEGIN IMPLEMENTATION`.
 3. The designated environment (Python 3.11 on Drive D: / WSL2) is verified with working PyTorch and FAISS packages.
@@ -676,7 +676,7 @@ Until these criteria are satisfied, the project remains strictly gated in **STEP
 | 3 | **Pooja Ramesh Singh Metadata** | Incorrect metadata: January 2026, SLP(C) No. 2341/2025. | Secondary sources contained speculative or inaccurate filing numbers. | Primary-source verified: *Pooja Ramesh Singh v. Jammu and Kashmir Bank Ltd. & Anr.*, Civil Appeal No. 11950 of 2025; **2026 INSC 668**; decided July 2, 2026; Bench: P.S. Narasimha and Alok Aradhe JJ. Metadata verified against a Supreme Court of India source; judgment text cross-checked against independent legal database (Indian Kanoon must not be described as an official portal). Arises under Section 7 IBC (not bail); motivates Level 1–4 verification. | Grounds legal hallucination directives in authoritative primary court records. | Literature table updated with verified primary citation `2026 INSC 668`. |
 | 4 | **Nonexistence Statuses & Invalid Citations** | Used `VERIFIED_NONEXISTENT` as general search result; uncalibrated invalidity claims. | Absence from indexed corpus does not prove nonexistence; ungrounded invalidity assertions violate open-world legal semantics. | Replaced with safe canonical statuses (`FOUND_AND_RESOLVED`, `NOT_FOUND_IN_CORPUS`, `AMBIGUOUS`, `UNRESOLVED`, `CONFIRMED_INVALID_CITATION`, `OFFICIAL_SOURCE_MISMATCH`, `FIXTURE_FABRICATED`). `CONFIRMED_INVALID_CITATION` strictly defined as contradicted by authoritative source after canonicalization/resolution attempts. Corpus absence alone is insufficient; logs 8 verification fields; forbids `VERIFIED_NONEXISTENT`. | Eliminates false nonexistence assertions; ensures rigorous evidential basis for invalidity. | Engine logs `NOT_FOUND_IN_CORPUS` or `UNRESOLVED` for unresolved citations; records 8 metadata fields for confirmed invalid citations. |
 | 5 | **Near-Duplicate Policy** | Hard-coded `> 90% factual overlap` with potential case deletion. | Fixed threshold unvalidated; deleting related cases destroys legitimate separate judicial decisions. | Candidate detection via MinHash/text similarity with threshold calibrated on Train/Dev inspection. Labeled: `EXACT_DUPLICATE`, `NEAR_DUPLICATE`, `RELATED_PROCEEDING`, `SAME_FIR_DIFFERENT_ACCUSED`, `DISTINCT`. Group-aware split assignment prevents cross-split leakage without deletion. | Prevents leakage while preserving legitimately distinct judicial proceedings. | Deduplication script tracks `duplicate_cluster_id` and assigns related clusters atomically to one split. |
-| 6 | **Legal Knowledge Graph Status** | Classified as optional in component list. | Knowledge Graph capability is mandatory because EXP-006, full NYAYA-NS, and applicability reasoning depend on it. | Legal Knowledge Graph capability is **MUST HAVE**. Default lightweight implementation is NetworkX + SQLite; Neo4j is an optional backend; technology remains replaceable. | Ensures required graph reasoning capabilities are present without imposing heavy database overhead. | Section 9 and Decision Register updated to classify Knowledge Graph capability as MUST HAVE. |
+| 6 | **Legal Knowledge Graph Status** | Classified as optional in component list. | Knowledge Graph capability is mandatory because EXP-006, full NYAYPRAMANA, and applicability reasoning depend on it. | Legal Knowledge Graph capability is **MUST HAVE**. Default lightweight implementation is NetworkX + SQLite; Neo4j is an optional backend; technology remains replaceable. | Ensures required graph reasoning capabilities are present without imposing heavy database overhead. | Section 9 and Decision Register updated to classify Knowledge Graph capability as MUST HAVE. |
 | 7 | **Chronological Split & Group-Aware Leakage** | Hard-coded calendar years (1975–2019, etc.) and uncalibrated exact ratio assumptions. | Calendar boundaries fail to produce 70/15/15; cluster atomicity conflicts with exact mathematical counts. | Dataset split policy: Chronological train/dev/test split targeting approximately 70% / 15% / 15% of eligible cases by count, while enforcing group-aware assignment of duplicate/near-duplicate clusters. Split boundaries determined prior to test evaluation and recorded in `split_manifest.json` without manual tuning. | Chronological 70/15/15 proportions are targets; duplicate/near-duplicate cluster atomicity is the hard leakage-prevention constraint; actual split statistics are reported in the split manifest. | Phase 5 assigns near-duplicate clusters atomically to single splits and logs realized proportions and cluster counts in split_manifest.json. |
 | 8 | **Bail Task Stratification** | Treated all 1,200 cases as one homogeneous prediction task. | Bail cancellation operates under different legal standards than fresh bail; merging them obscures task heterogeneity. | Keep all 1,200 cases in corpus. Primary prediction benchmark is Fresh Bail (1,084 cases); Cancellation (116 cases) is a secondary benchmark. Report strata A–F. | Ensures methodological rigor and meaningful comparison with real judicial standards. | Evaluation harness outputs overall and stratified tables across strata A–F. |
 | 9 | **Mode-1 Feature Availability Audit** | Informal quarantine of summary/reasoning. | Ambiguous fields like `legal_principles_discussed` could leak post-decision judge analysis. | Formal classification: `PRE_DECISION`, `POST_DECISION`, `UNKNOWN`. All `POST_DECISION` and `UNKNOWN` fields strictly quarantined from Mode 1 inputs. | Guarantees zero post-decision information leakage in historical prediction. | Ingestion pipeline enforces strict input schema filtering based on the audit table. |

@@ -1,4 +1,4 @@
-# NYAYA-NS: Project Decision Register (Version 2.1)
+# NYAYPRAMANA: Project Decision Register (Version 2.1)
 
 **Document Version:** 2.1.0-LOCKED-FINAL  
 **Date:** September 23, 2026  
@@ -9,7 +9,7 @@
 
 ## Overview
 
-This register formally documents all locked research, architectural, and methodological decisions for **NYAYA-NS**. These decisions are binding on all subsequent development phases and may not be altered without explicit user re-authorization.
+This register formally documents all locked research, architectural, and methodological decisions for **NYAYPRAMANA**. These decisions are binding on all subsequent development phases and may not be altered without explicit user re-authorization.
 
 ---
 
@@ -57,7 +57,7 @@ This register formally documents all locked research, architectural, and methodo
 
 ### DEC-001: Zero Synthetic Training Data
 - **Status:** LOCKED
-- **Decision:** NYAYA-NS strictly prohibits the creation or ingestion of synthetic legal cases, mock court orders, fabricated statutes, or synthetic training examples into any training, retrieval, or knowledge corpus.
+- **Decision:** NYAYPRAMANA strictly prohibits the creation or ingestion of synthetic legal cases, mock court orders, fabricated statutes, or synthetic training examples into any training, retrieval, or knowledge corpus.
 - **Enforcement:** All data pipelines validate source hashes and provenance against official repositories.
 
 ### DEC-002: Controlled Adversarial Fixtures Permitted Only for Evaluation
@@ -198,12 +198,12 @@ This register formally documents all locked research, architectural, and methodo
   > Existing work demonstrates components such as legal judgment prediction, RAG, legal knowledge graphs, structured reasoning, and legal citation handling. The surveyed literature does not establish whether a domain-bounded, verification-first neuro-symbolic pipeline for Indian bail analysis combining authority applicability, temporal validity, source/passage verification, proof graphs, and calibrated abstention produces measurable reliability gains over progressively stronger RAG baselines.
 - **Verified References & Scope Statements:**
   - **NyayaRAG:** Shubham Kumar Nigam et al., *arXiv:2508.00709* (AACL-IJCNLP 2025; submission Aug 2025). PRIMARY SOURCE VERIFIED. *Literature-Scope Statement:* The cited work investigates dense semantic retrieval but does not describe or evaluate explicit verification-first mechanisms such as passage-level citation verification, symbolic temporal gating, provenance-aware proof graphs, or calibrated abstention.
-  - **NyayaAnumana & INLegalLlama:** Shubham Kumar Nigam et al., *"The Largest Indian Legal Judgment Prediction Dataset and Specialized Language Model for Enhanced Decision Analysis"*, Proceedings of the 31st International Conference on Computational Linguistics (COLING 2025), pages 11094–11109; *arXiv:2412.08385*; ACL Anthology: `2025.coling-main.738`; initial submission Dec 11, 2024. Treated as dataset and model contributions from the same paper. PRIMARY SOURCE VERIFIED. *Literature-Scope Statement:* The cited paper does not describe or evaluate the explicit verification-first mechanisms targeted by NYAYA-NS, including passage-level citation verification, symbolic temporal gating, provenance-aware proof graphs, or calibrated verification-aware abstention.
+  - **NyayaAnumana & INLegalLlama:** Shubham Kumar Nigam et al., *"The Largest Indian Legal Judgment Prediction Dataset and Specialized Language Model for Enhanced Decision Analysis"*, Proceedings of the 31st International Conference on Computational Linguistics (COLING 2025), pages 11094–11109; *arXiv:2412.08385*; ACL Anthology: `2025.coling-main.738`; initial submission Dec 11, 2024. Treated as dataset and model contributions from the same paper. PRIMARY SOURCE VERIFIED. *Literature-Scope Statement:* The cited paper does not describe or evaluate the explicit verification-first mechanisms targeted by NYAYPRAMANA, including passage-level citation verification, symbolic temporal gating, provenance-aware proof graphs, or calibrated verification-aware abstention.
   - **LeCNet:** Vijit Malik et al., *"ILDC for CJPE: Indian Legal Documents Corpus for Court Judgment Prediction and Explanation"*, ACM / GitHub (`Law-AI/LeCNet`), 2022/2023. PRIMARY SOURCE VERIFIED. *Literature-Scope Statement:* The cited work focuses on citation network analysis and topological link prediction; it is not reported as evaluating neuro-symbolic verification, passage-level citation verification, or bail decision workflows.
   - **Pooja Ramesh Singh Directives on AI Precedents:** *Pooja Ramesh Singh v. Jammu and Kashmir Bank Ltd. & Anr.*, Supreme Court of India, Civil Appeal No. 11950 of 2025; **2026 INSC 668**; decided July 2, 2026; Bench: Justice Pamidighantam Sri Narasimha, Justice Alok Aradhe. PRIMARY SOURCE VERIFIED.
     - *Source Verification:* The case metadata is verified against a Supreme Court of India source (`2026 INSC 668` / `Civil Appeal No. 11950 of 2025`). The judgment text is cross-checked against an independent legal database. Indian Kanoon must not be described as an official Supreme Court portal.
     - *Preserved Metadata:* Civil Appeal No. 11950 of 2025; 2026 INSC 668; decided July 2, 2026; bench: P.S. Narasimha and Alok Aradhe JJ.; primary portal: `https://main.sci.gov.in/` / `https://digiscr.sci.gov.in/`.
-    - *Three-Part Analytical Distinction:* (1) What Supreme Court source establishes: Setting aside orders based on fake citations ("no decision in the eyes of law", advocate misconduct); (2) What independent database cross-check establishes: Confirms full judgment text and origin under Section 7 IBC (not a bail authority); (3) What NYAYA-NS uses case to motivate: Motivates Level 1–4 citation verification pipeline.
+    - *Three-Part Analytical Distinction:* (1) What Supreme Court source establishes: Setting aside orders based on fake citations ("no decision in the eyes of law", advocate misconduct); (2) What independent database cross-check establishes: Confirms full judgment text and origin under Section 7 IBC (not a bail authority); (3) What NYAYPRAMANA uses case to motivate: Motivates Level 1–4 citation verification pipeline.
 
 ### DEC-027: Distinct Metric Families (No Composite Score)
 - **Status:** LOCKED
@@ -245,7 +245,7 @@ This register formally documents all locked research, architectural, and methodo
 - **Status:** LOCKED
 - **Decision:** Provenance-aware Legal Knowledge Graph capability is classified as a **MUST HAVE** architectural requirement. It is mandatory because:
   1. EXP-006 directly evaluates graph-augmented retrieval against dense and hybrid baselines.
-  2. The full NYAYA-NS architecture (EXP-007) requires structured legal knowledge representation.
+  2. The full NYAYPRAMANA architecture (EXP-007) requires structured legal knowledge representation.
   3. Authority applicability, multi-hop reasoning, and provenance tracing depend on structured legal relationships.
 - **Backend Technology Decoupling:**
   - **MUST HAVE:** Provenance-aware Legal Knowledge Graph capability supporting required nodes (statutes, provisions, precedents, legal issues, courts), edges, provenance, and graph traversals.
